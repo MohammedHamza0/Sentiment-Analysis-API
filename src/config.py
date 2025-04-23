@@ -83,9 +83,9 @@ EMOTIONS_DICT = {
 
 
 
-NEGATION_STOPWORDS = {
+NEGATION_STOPWORDS = [
     "no", "not", "nor", "never", "n't", "cannot",
     "don't", "doesn't", "didn't", "won't", "wouldn't",
-    "shouldn't", "can't", "couldn't", "isn't", "aren't", "wasn't", "weren't", "nothing", "nowhere", "neither", "nobody", "none"
-}
+    "shouldn't", "can't", "couldn't", "isn't", "aren't", 
+    "wasn't", "weren't", "nothing", "nowhere", "neither", "nobody", "none"]
 
