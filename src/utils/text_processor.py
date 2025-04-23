@@ -4,16 +4,19 @@ from nltk.stem import WordNetLemmatizer
 from nltk import word_tokenize, pos_tag
 from nltk.corpus import wordnet
 
-from src.config import EMOTIONS_DICT
+from src.config import EMOTIONS_DICT, NEGATION_STOPWORDS
 
 
 
 
 class TextProcessor:
      def __init__(self):
-          self.stop_words = set(stopwords.words('english'))
+          self.stop_words = [set(stopwords.words('english'))] - NEGATION_STOPWORDS
           self.lemmatizer = WordNetLemmatizer()
           self.emotions_dic = EMOTIONS_DICT
+          
+     def _remove_stop_words(self, text: str) -> str:
+          return " ".join([word for word in text.split() if word not in self.stop_words])
           
      def _remove_pattern(self, input_text: str, pattern: str) -> str:
           return re.sub(pattern, '', input_text)
@@ -53,3 +56,13 @@ class TextProcessor:
           lemmatized = [self.lemmatizer.lemmatize(word, self._get_wordnet_pos(pos)) for word, pos in pos_tags]
           return " ".join(lemmatized)
      
+     def process_text(self, text: str) -> str:
+          text = text.lower()
+          text = self._remove_pattern(text, r'@\w+')
+          text = self._remove_hyberlinks(text)
+          text = self._remove_repeated_chars_more_than_2(text)
+          text = self._replace_emotions(text)
+          text = self._remove_punc(text)
+          text = self._remove_stop_words(text)
+          text = self._tokeniz_lemm(text)
+          return text
