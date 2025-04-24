@@ -61,7 +61,20 @@ Sentiment-Analysis-API/
    ```bash
    cd Sentiment-Analysis-API
    ```
-3. Install dependencies:
+3. Create a new Python environment (Python 3.10):
+   ```bash
+   python -m venv venv
+   ```
+4. Activate the environment:
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+5. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
