@@ -55,7 +55,7 @@ Sentiment-Analysis-API/
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/MohammedHamza0/Sentiment-Analysis-API.git>
    ```
 2. Navigate to the project directory:
    ```bash
