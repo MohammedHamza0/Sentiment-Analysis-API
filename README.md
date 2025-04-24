@@ -28,9 +28,10 @@ Sentiment-Analysis-API/
     ├── config.py             # Configuration settings
     ├── schemas/              # Input and output schemas
     │   ├── __init__.py
-    │   └── input_schema.py
+    │   └── input_output_schema.py
     └── utils/                # Utility functions and classes
         ├── __init__.py
+        |__ inferance.py      # Model Prediction
         └── text_processor.py # Text preprocessing logic
 ```
 
