@@ -27,7 +27,7 @@ else:
 input_text = st.text_area("Enter text for sentiment analysis:")
 
 with st.sidebar:
-     st.image("images/Blog_DA_Sentiment_Customer_08052022.png", use_column_width=True)
+     st.image("images/Blog_DA_Sentiment_Customer_08052022.png", use_container_width =True)
      st.header("API Key")
      API_KEY = st.text_input("Enter your API Key", type="password")
      st.markdown("**Note:** This API key is used to authenticate your requests.")
