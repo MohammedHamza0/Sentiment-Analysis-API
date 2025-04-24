@@ -10,7 +10,7 @@ class text_request(BaseModel):
      Schema Example
      '''
      class Config:
-          schema_extra = {
+          json_schema_extra = {
                "example": {
                     "texts": [
                          "This is a text",
@@ -28,7 +28,7 @@ class SentimentPrediction(BaseModel):
      Schema Example
      '''
      class Config:
-          schema_extra = {
+          json_schema_extra = {
                "example": {
                     "text": "This is a text",
                     "sentiment": "positive"
@@ -43,7 +43,7 @@ class PredictionResponse(BaseModel):
      Schema Example
      '''
      class Config:
-          schema_extra = {
+          json_schema_extra = {
                "example": {
                     "predictions": [
                          {

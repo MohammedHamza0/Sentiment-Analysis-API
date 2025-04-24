@@ -11,7 +11,7 @@ from src.config import EMOTIONS_DICT, NEGATION_STOPWORDS
 
 class TextProcessor:
      def __init__(self):
-          self.stop_words = [set(stopwords.words('english'))] - NEGATION_STOPWORDS
+          self.stop_words = set(stopwords.words('english')) - set(NEGATION_STOPWORDS)
           self.lemmatizer = WordNetLemmatizer()
           self.emotions_dic = EMOTIONS_DICT
           
