@@ -8,7 +8,7 @@ This project is a Sentiment Analysis API designed to process text data and class
 ```
 Sentiment-Analysis-API/
 ├── backend.py                # Backend logic for the API
-├── frontend.py               # Frontend interface for the API
+├── frontend.py               # Streamlit frontend for the API
 ├── LICENSE                   # License information
 ├── README.md                 # Project documentation
 ├── requirements.txt          # Python dependencies
@@ -21,31 +21,36 @@ Sentiment-Analysis-API/
 │   └── word2vec.model
 ├── DataSets/                 # Datasets for training and testing
 │   └── testdata.manual.2009.06.14.csv
+├── images/                   # Images used in the project
+│   └── Blog_DA_Sentiment_Customer_08052022.png
 ├── NoteBooks/                # Jupyter notebooks for experimentation
 │   └── notebook.ipynb
 ├── src/                      # Source code for the project
-    ├── __init__.py
-    ├── config.py             # Configuration settings
-    ├── schemas/              # Input and output schemas
-    │   ├── __init__.py
-    │   └── input_output_schema.py
-    └── utils/                # Utility functions and classes
-        ├── __init__.py
-        |__ inferance.py      # Model Prediction
-        └── text_processor.py # Text preprocessing logic
+│   ├── __init__.py
+│   ├── config.py             # Configuration settings
+│   ├── schemas/              # Input and output schemas
+│   │   ├── __init__.py
+│   │   └── input_output_schema.py
+│   └── utils/                # Utility functions and classes
+│       ├── __init__.py
+│       ├── inferance.py      # Inference logic for sentiment analysis
+│       └── text_processor.py # Text preprocessing logic
 ```
 
 ## Key Components
 
 ### Backend and Frontend
 - **backend.py**: Contains the backend logic for handling API requests.
-- **frontend.py**: Provides a user interface for interacting with the API.
+- **frontend.py**: Provides a Streamlit-based user interface for interacting with the API.
 
 ### Artifacts
 - Pre-trained models and vectorizers stored in the `artifacts/` directory.
 
 ### Datasets
 - The `DataSets/` folder contains datasets for testing and evaluation.
+
+### Images
+- The `images/` folder contains images used in the project, such as for the frontend UI.
 
 ### Notebooks
 - The `NoteBooks/` folder includes Jupyter notebooks for data exploration and experimentation.
@@ -81,11 +86,15 @@ Sentiment-Analysis-API/
    ```
 
 ## Usage
-1. Run the backend server:
+1. Start the backend server:
    ```bash
-   python backend.py
+   uvicorn backend:app --host 127.0.0.1 --port 8000
    ```
-2. Access the frontend interface to interact with the API.
+2. Run the Streamlit frontend:
+   ```bash
+   streamlit run frontend.py
+   ```
+3. Access the frontend interface in your browser at `http://localhost:8501`.
 
 ## License
 This project is licensed under the terms specified in the `LICENSE` file.
