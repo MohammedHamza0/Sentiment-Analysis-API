@@ -44,10 +44,15 @@ async def Home():
      }
      
      
-@app.post("/predict", tags=["Predict"], description="Predict sentiment")
+@app.post("/predict", tags=["Predict"], description="Predict sentiment", response_model=PredictionResponse)
 async def Predict(texts: text_request, api_key: str = Depends(verify_api_key)):
      try:
-          predictions = text_classifier.predict(texts.texts)
+          predictions_raw = text_classifier.predict(texts.texts)
+          # Map the keys to match the PredictionResponse schema
+          predictions = [
+               {"text": item["Text"], "sentiment": item["Sentiment"]}
+               for item in predictions_raw
+          ]
           return PredictionResponse(predictions=predictions)
      except Exception as e:
           raise HTTPException(status_code=500, detail=str(e))

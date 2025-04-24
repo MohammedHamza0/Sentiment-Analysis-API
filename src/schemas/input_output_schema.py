@@ -4,7 +4,7 @@ from typing import List
 
 
 class text_request(BaseModel):
-     texts: List[str] = Field(..., description="List of texts to analyze them")
+     texts: List[str] = Field(..., description="List of texts to analyze them", min_length=1)
      
      '''
      Schema Example
