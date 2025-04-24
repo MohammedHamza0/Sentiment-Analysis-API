@@ -89,3 +89,10 @@ NEGATION_STOPWORDS = [
     "shouldn't", "can't", "couldn't", "isn't", "aren't", 
     "wasn't", "weren't", "nothing", "nowhere", "neither", "nobody", "none"]
 
+
+CLASS_MAPS = {
+    0: "Negative",
+    1: "Positive",
+    2: "Neutral"
+}
+

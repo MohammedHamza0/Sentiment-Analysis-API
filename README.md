@@ -1,1 +1,77 @@
 # Sentiment-Analysis-API
+
+## Overview
+This project is a Sentiment Analysis API designed to process text data and classify sentiments using various machine learning models. It includes components for text preprocessing, model artifacts, and datasets for training and testing.
+
+## Project Structure
+
+```
+Sentiment-Analysis-API/
+├── backend.py                # Backend logic for the API
+├── frontend.py               # Frontend interface for the API
+├── LICENSE                   # License information
+├── README.md                 # Project documentation
+├── requirements.txt          # Python dependencies
+├── artifacts/                # Pre-trained model artifacts
+│   ├── bow.pkl
+│   ├── svm_model_bow.pkl
+│   ├── svm_model_glove.pkl
+│   ├── svm_model_tfidf.pkl
+│   ├── tf-idf.pkl
+│   └── word2vec.model
+├── DataSets/                 # Datasets for training and testing
+│   └── testdata.manual.2009.06.14.csv
+├── NoteBooks/                # Jupyter notebooks for experimentation
+│   └── notebook.ipynb
+├── src/                      # Source code for the project
+    ├── __init__.py
+    ├── config.py             # Configuration settings
+    ├── schemas/              # Input and output schemas
+    │   ├── __init__.py
+    │   └── input_schema.py
+    └── utils/                # Utility functions and classes
+        ├── __init__.py
+        └── text_processor.py # Text preprocessing logic
+```
+
+## Key Components
+
+### Backend and Frontend
+- **backend.py**: Contains the backend logic for handling API requests.
+- **frontend.py**: Provides a user interface for interacting with the API.
+
+### Artifacts
+- Pre-trained models and vectorizers stored in the `artifacts/` directory.
+
+### Datasets
+- The `DataSets/` folder contains datasets for testing and evaluation.
+
+### Notebooks
+- The `NoteBooks/` folder includes Jupyter notebooks for data exploration and experimentation.
+
+### Source Code
+- The `src/` directory contains the main source code, including configuration, schemas, and utility functions for text processing.
+
+## Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd Sentiment-Analysis-API
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+1. Run the backend server:
+   ```bash
+   python backend.py
+   ```
+2. Access the frontend interface to interact with the API.
+
+## License
+This project is licensed under the terms specified in the `LICENSE` file.
