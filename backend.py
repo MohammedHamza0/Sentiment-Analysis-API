@@ -1,15 +1,14 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
-from src.config import (APP_NAME, VERSION, API_SECRET_KEY, svm_bow_model, 
-                     svm_ifidf_model, tfidf_vectorizer, bow_vectorizer)
+from src.config import (APP_NAME, VERSION, API_SECRET_KEY)
 from src.utils.inferance import TextClassifier
 from src.schemas.input_output_schema import text_request, PredictionResponse
 
 
 
 # Initialize the TextClassifier
-text_classifier = TextClassifier(model_type="tfidf")
+text_classifier = TextClassifier(model_type="glove", model_name="svm")
 
 # Intialize FastAPI app
 app = FastAPI(title=APP_NAME, 
@@ -17,7 +16,8 @@ app = FastAPI(title=APP_NAME,
               description="API Sentiment Analysis for twitter data")
 
 
-# open cors
+# open cors (Cross-Origin Resource Sharing) for all origins
+# This is important for the frontend to access the backend API
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
