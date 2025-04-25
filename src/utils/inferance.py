@@ -1,8 +1,10 @@
 from typing import List, Dict
 
 from .text_processor import TextProcessor
-from src.config import (svm_bow_model, svm_ifidf_model,
-                        tfidf_vectorizer, bow_vectorizer)
+from src.config import (tfidf_vectorizer, 
+                        bow_vectorizer)
+
+
 from src.config import CLASS_MAPS
 
 

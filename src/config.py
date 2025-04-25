@@ -2,6 +2,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv(override=True)
 import joblib
+import gensim.downloader as api
 
 
 # Load dot env variables
@@ -17,15 +18,22 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ARTIFACTS_DIR = os.path.join(PROJECT_DIR, "artifacts")
 
 
-# Load models & vectorizers
+# Load vectorizers
 tfidf_vectorizer = joblib.load(os.path.join(ARTIFACTS_DIR, "tf-idf.pkl"))
 bow_vectorizer = joblib.load(os.path.join(ARTIFACTS_DIR, "bow.pkl"))
+glove_vectorizer = api.load("glove-twitter-25")
+
+# Load models
 svm_ifidf_model = joblib.load(os.path.join(ARTIFACTS_DIR, "svm_model_tfidf.pkl"))
 svm_bow_model = joblib.load(os.path.join(ARTIFACTS_DIR, "svm_model_bow.pkl"))
+svm_glove_model = joblib.load(os.path.join(ARTIFACTS_DIR, "svm_model_glove.pkl"))
+rf_ifidf_model = joblib.load(os.path.join(ARTIFACTS_DIR, "rf_model_tfidf.pkl"))
+rf_bow_model = joblib.load(os.path.join(ARTIFACTS_DIR, "rf_model_bow.pkl"))
+rf_glove_model = joblib.load(os.path.join(ARTIFACTS_DIR, "rf_model_glove.pkl"))
 
 
 
-
+# Create a dictionary for emojis maps
 EMOTIONS_DICT = {
     # 🙂 Emojis
     "😀": "grinning face",
@@ -82,7 +90,7 @@ EMOTIONS_DICT = {
 }
 
 
-
+# Neccessary stop words for text processing
 NEGATION_STOPWORDS = [
     "no", "not", "nor", "never", "n't", "cannot",
     "don't", "doesn't", "didn't", "won't", "wouldn't",
@@ -90,6 +98,7 @@ NEGATION_STOPWORDS = [
     "wasn't", "weren't", "nothing", "nowhere", "neither", "nobody", "none"]
 
 
+# Create a dictionary for class maps
 CLASS_MAPS = {
     0: "Negative",
     1: "Positive",
