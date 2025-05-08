@@ -28,8 +28,8 @@ app.add_middleware(
 
 
 api_key_header = APIKeyHeader(name="X-API-Key")
-async def verify_api_key(api_key: str = Depends(api_key_header)):
-    if api_key != get_settings().API_SECRET_KEY:
+async def verify_api_key(api_key: str = Depends(api_key_header), settings: Settings = Depends(get_settings)):
+    if api_key != settings.API_SECRET_KEY:
         raise HTTPException(status_code=403, detail="Invalid API Key")
     return api_key
 
