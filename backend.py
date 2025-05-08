@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import APIKeyHeader
-from src.config import (APP_NAME, VERSION, API_SECRET_KEY)
+from src.config import Settings, get_settings
 from src.utils.inferance import TextClassifier
 from src.schemas.input_output_schema import text_request, PredictionResponse
 
@@ -11,8 +11,8 @@ from src.schemas.input_output_schema import text_request, PredictionResponse
 text_classifier = TextClassifier(model_type="glove", model_name="svm")
 
 # Intialize FastAPI app
-app = FastAPI(title=APP_NAME, 
-              version=VERSION,
+app = FastAPI(title=get_settings().APP_NAME, 
+              version=get_settings().VERSION,
               description="API Sentiment Analysis for twitter data")
 
 
@@ -29,17 +29,17 @@ app.add_middleware(
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 async def verify_api_key(api_key: str = Depends(api_key_header)):
-    if api_key != API_SECRET_KEY:
+    if api_key != get_settings().API_SECRET_KEY:
         raise HTTPException(status_code=403, detail="Invalid API Key")
     return api_key
 
 
 
 @app.get("/", tags=["Healthy"], description="Healthy check endpoint")
-async def Home():
+async def Home(settings: Settings = Depends(get_settings)):
      return {
-          "app_name": APP_NAME,
-          "version": VERSION,
+          "app_name": settings.APP_NAME,
+          "version": settings.VERSION,
           "message": "Welcome to the Sentiment Analysis API"
      }
      

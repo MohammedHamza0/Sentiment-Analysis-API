@@ -1,14 +1,33 @@
 import os
-from dotenv import load_dotenv
-load_dotenv(override=True)
+from pydantic_settings import BaseSettings
+# from dotenv import load_dotenv
+# load_dotenv(override=True)
 import joblib
 import gensim.downloader as api
 
 
 # Load dot env variables
-APP_NAME = os.getenv("APP_NAME")
-VERSION = os.getenv("VERSION")
-API_SECRET_KEY = os.getenv("API_SECRET_KEY")
+# APP_NAME = os.getenv("APP_NAME")
+# VERSION = os.getenv("VERSION")
+# API_SECRET_KEY = os.getenv("API_SECRET_KEY")
+
+
+
+# Class Validation
+# This class is used to load environment variables from a .env file
+class Settings(BaseSettings):
+    class Config:
+        env_file = ".env"
+        
+    APP_NAME: str
+    VERSION: str
+    API_SECRET_KEY: str
+    
+# Create a function to load the settings
+# This function will be used to load the settings from the .env file
+def get_settings() -> Settings:
+    return Settings()
+
 
 
 

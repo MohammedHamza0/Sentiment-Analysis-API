@@ -11,3 +11,4 @@ wordcloud==1.9.4
 gensim==4.3.3
 spacy==3.8.4
 nltk==3.6.5
+pydantic-settings==2.2.1
