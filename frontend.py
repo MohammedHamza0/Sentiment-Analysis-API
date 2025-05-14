@@ -12,7 +12,7 @@ def start_backend():
     try:
         # Start the backend process
         backend_process = subprocess.Popen(
-            ["uvicorn", "backend:app", "--host", "127.0.0.1", "--port", "8000", "--reload"],
+            ["uvicorn", "backend:app", "--host", "127.0.0.1", "--port", "5000", "--reload"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
@@ -53,7 +53,7 @@ if st.button("Analyze Sentiment"):
 
                 # Send request to the backend API with the API key and model details in headers
                 response = requests.post(
-                    "http://127.0.0.1:8000/predict",
+                    "http://127.0.0.1:5000/predict",
                     json={"texts": sentences, "model_type": model_type, "model_name": model_name},
                     headers={"X-API-Key": API_KEY}
                 )
