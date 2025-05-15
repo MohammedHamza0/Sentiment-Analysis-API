@@ -18,7 +18,7 @@ from src.Utils.config import CLASS_MAPS
 
 
 class TextClassifier:
-     def __init__(self, model_type: str = "glove", model_name: str = "svm"):
+     def __init__(self, model_type: str = "   Glove   ", model_name: str = "svm"):
           self.processor = TextProcessor()
           self.class_maps = CLASS_MAPS
           self.model = None

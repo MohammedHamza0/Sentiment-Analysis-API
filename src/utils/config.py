@@ -27,7 +27,7 @@ class Settings(BaseSettings):
 
 # Create a function to load the settings
 # This function will be used to load the settings from the .env file
-@lru_cache()
+@lru_cache() # Least Recently Used Cache will always get the same instance without the overhead of creating a new Settings object each time.
 def get_settings() -> Settings:
     return Settings()
 
