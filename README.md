@@ -1,5 +1,13 @@
 # Sentiment-Analysis-API
 
+## Team Members
+* Mohammed Hamza Moawad  412200058
+* Abdelrahman Ahmed Eldaba 412200228
+* Ahmed Mohamed Esmail  412200120
+* Hoda Mohamed Elwakeel  412200403
+* Al-Zahra Ali Eissa  412200010
+* Aseel Samy Ahmed Al-Faqih  412200430
+
 ## Overview
 This project is a Sentiment Analysis API designed to process text data and classify sentiments using various machine learning models. It includes components for text preprocessing, model artifacts, and datasets for training and testing. The project provides both a backend API and a Streamlit-based frontend for user interaction.
 
