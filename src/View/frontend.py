@@ -3,6 +3,10 @@ import requests
 import os
 import subprocess
 import time
+from src.Utils.config import get_settings
+
+# Get settings
+settings = get_settings()
 
 # Streamlit app title
 st.title("Sentiment Analysis API Frontend")
@@ -12,7 +16,7 @@ def start_backend():
     try:
         # Start the backend process
         backend_process = subprocess.Popen(
-            ["uvicorn", "backend:app", "--host", "127.0.0.1", "--port", "5000", "--reload"],
+            ["uvicorn", "src.Core.backend:app", "--host", settings.HOST, "--port", str(settings.PORT), "--reload"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
@@ -23,7 +27,7 @@ def start_backend():
         return None
 
 # Check if the backend is already running
-backend_running = os.system("tasklist | findstr uvicorn") == 0
+backend_running = os.system(f"netstat -ano | findstr :{settings.PORT}") == 0
 if backend_running:
     st.info("Backend is already running.")
 else:
@@ -33,8 +37,12 @@ else:
 
 input_text = st.text_area("Enter text for sentiment analysis:")
 
+# Get the absolute path to the images directory
+image_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "images", "Blog_DA_Sentiment_Customer_08052022.png")
+
 with st.sidebar:
-    st.image("images/Blog_DA_Sentiment_Customer_08052022.png", use_container_width=True)
+    if os.path.exists(image_path):
+        st.image(image_path, use_container_width=True)
     st.header("API Key")
     API_KEY = st.text_input("Enter your API Key", type="password")
     st.markdown("**Note:** This API key is used to authenticate your requests.")
@@ -53,7 +61,7 @@ if st.button("Analyze Sentiment"):
 
                 # Send request to the backend API with the API key and model details in headers
                 response = requests.post(
-                    "http://127.0.0.1:5000/predict",
+                    f"http://{settings.HOST}:{settings.PORT}/predict",
                     json={"texts": sentences, "model_type": model_type, "model_name": model_name},
                     headers={"X-API-Key": API_KEY}
                 )

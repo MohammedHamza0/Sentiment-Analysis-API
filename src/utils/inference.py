@@ -3,18 +3,18 @@ import numpy as np
 from typing import List, Dict
 
 from .text_processor import TextProcessor
-from src.config import (tfidf_vectorizer, 
+from src.Utils.config import (tfidf_vectorizer, 
                         bow_vectorizer,
                         glove_vectorizer)
 
-from src.config import (svm_ifidf_model,
+from src.Utils.config import (svm_ifidf_model,
                         svm_bow_model,
                         svm_glove_model,
                         rf_ifidf_model,
                         rf_bow_model,
                         rf_glove_model)
 
-from src.config import CLASS_MAPS
+from src.Utils.config import CLASS_MAPS
 
 
 class TextClassifier:

@@ -1,10 +1,12 @@
 import os
 from pydantic_settings import BaseSettings
-# from dotenv import load_dotenv
-# load_dotenv(override=True)
+from functools import lru_cache
+from dotenv import load_dotenv
 import joblib
 import gensim.downloader as api
 
+# Load environment variables from .env file
+load_dotenv()
 
 # Load dot env variables
 # APP_NAME = os.getenv("APP_NAME")
@@ -16,15 +18,16 @@ import gensim.downloader as api
 # Class Validation
 # This class is used to load environment variables from a .env file
 class Settings(BaseSettings):
-    class Config:
-        env_file = ".env"
-        
-    APP_NAME: str
-    VERSION: str
-    API_SECRET_KEY: str
-    
+    APP_NAME: str = "Sentiment Analysis API"
+    VERSION: str = "1.0.0"
+    API_SECRET_KEY: str = os.getenv("API_SECRET_KEY", "your-default-secret-key")
+    MODEL_PATH: str = "Artifacts"
+    PORT: int = 5000
+    HOST: str = "127.0.0.1"
+
 # Create a function to load the settings
 # This function will be used to load the settings from the .env file
+@lru_cache()
 def get_settings() -> Settings:
     return Settings()
 
@@ -33,8 +36,8 @@ def get_settings() -> Settings:
 
 
 # Create variable to access the artifacts dir
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ARTIFACTS_DIR = os.path.join(PROJECT_DIR, "artifacts")
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+ARTIFACTS_DIR = os.path.join(PROJECT_DIR, "Artifacts")
 
 
 # Load vectorizers

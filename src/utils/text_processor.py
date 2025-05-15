@@ -4,7 +4,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk import word_tokenize, pos_tag
 from nltk.corpus import wordnet
 
-from src.config import EMOTIONS_DICT, NEGATION_STOPWORDS
+from src.Utils.config import EMOTIONS_DICT, NEGATION_STOPWORDS
 
 
 

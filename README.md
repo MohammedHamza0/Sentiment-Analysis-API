@@ -7,13 +7,25 @@ This project is a Sentiment Analysis API designed to process text data and class
 
 ```
 Sentiment-Analysis-API/
-├── backend.py                # Backend logic for the API
-├── frontend.py               # Streamlit frontend for the API
-├── template.py               # Template for creating new components
-├── LICENSE                   # License information
-├── README.md                 # Project documentation
-├── requirements.txt          # Python dependencies
-├── artifacts/                # Pre-trained model artifacts
+├── src/                      # Source code for the project
+│   ├── __init__.py          # Package initialization
+│   ├── Controller/          # API controllers and routes
+│   │   ├── __init__.py
+│   │   ├── app_router.py    # Main API routes
+│   │   └── base_router.py   # Base router configuration
+│   ├── Model/               # Data models and ML components
+│   │   ├── __init__.py
+│   │   └── input_output_schema.py
+│   ├── View/                # Frontend components
+│   │   ├── __init__.py
+│   │   └── frontend.py      # Streamlit UI
+│   ├── Utils/               # Utility functions
+│   │   ├── __init__.py
+│   │   └── config.py        # Configuration settings
+│   └── Core/                # Core application components
+│       ├── __init__.py
+│       └── backend.py       # FastAPI application
+├── Artifacts/               # Pre-trained model artifacts
 │   ├── bow.pkl
 │   ├── glove.pkl
 │   ├── svm_model_bow.pkl
@@ -23,52 +35,44 @@ Sentiment-Analysis-API/
 │   ├── rf_model_bow.pkl
 │   ├── rf_model_glove.pkl
 │   └── rf_model_tfidf.pkl
-├── DataSets/                 # Datasets for training and testing
+├── DataSets/                # Datasets for training and testing
 │   └── testdata.manual.2009.06.14.csv
-├── images/                   # Images used in the project
+├── images/                  # Images used in the project
 │   └── Blog_DA_Sentiment_Customer_08052022.png
-├── NoteBooks/                # Jupyter notebooks for experimentation
+├── NoteBooks/               # Jupyter notebooks for experimentation
 │   └── notebook.ipynb
-├── src/                      # Source code for the project
-│   ├── __init__.py
-│   ├── config.py             # Configuration settings
-│   ├── schemas/              # Input and output schemas
-│   │   ├── __init__.py
-│   │   └── input_output_schema.py
-│   └── utils/                # Utility functions and classes
-│       ├── __init__.py
-│       ├── inferance.py      # Inference logic for sentiment analysis
-│       └── text_processor.py # Text preprocessing logic
+├── setup.py                 # Package installation configuration
+├── run.py                   # Application entry point
+├── requirements.txt         # Python dependencies
+├── LICENSE                  # License information
+└── README.md               # Project documentation
 ```
 
 ## Key Components
 
-### Backend and Frontend
-- **backend.py**: Contains the backend logic for handling API requests. It uses FastAPI to expose endpoints for sentiment analysis.
-- **frontend.py**: Provides a Streamlit-based user interface for interacting with the API. It allows users to input text, select models, and view sentiment predictions.
-
-### Template
-- **template.py**: A template file for creating new components or modules in the project. This file provides a structured starting point for adding new functionality.
+### MVC Architecture
+- **Model**: Contains data models, schemas, and ML components
+- **View**: Contains the Streamlit-based frontend interface
+- **Controller**: Contains API routes and request handlers
+- **Utils**: Contains configuration and utility functions
+- **Core**: Contains the main FastAPI application
 
 ### Artifacts
-- Pre-trained models and vectorizers stored in the `artifacts/` directory. These include:
-  - **bow.pkl**: Bag of Words vectorizer.
-  - **glove.pkl**: GloVe embeddings.
-  - **tf-idf.pkl**: TF-IDF vectorizer.
-  - **svm_model_bow.pkl**, **svm_model_glove.pkl**, **svm_model_tfidf.pkl**: SVM models for different vectorization techniques.
-  - **rf_model_bow.pkl**, **rf_model_glove.pkl**, **rf_model_tfidf.pkl**: Random Forest models for different vectorization techniques.
+Pre-trained models and vectorizers stored in the `Artifacts/` directory:
+- **bow.pkl**: Bag of Words vectorizer
+- **glove.pkl**: GloVe embeddings
+- **tf-idf.pkl**: TF-IDF vectorizer
+- **svm_model_*.pkl**: SVM models for different vectorization techniques
+- **rf_model_*.pkl**: Random Forest models for different vectorization techniques
 
 ### Datasets
-- The `DataSets/` folder contains datasets for testing and evaluation, such as `testdata.manual.2009.06.14.csv`.
+The `DataSets/` folder contains datasets for testing and evaluation.
 
 ### Images
-- The `images/` folder contains images used in the project, such as for the frontend UI.
+The `images/` folder contains images used in the project UI.
 
 ### Notebooks
-- The `NoteBooks/` folder includes Jupyter notebooks for data exploration, experimentation, and model training.
-
-### Source Code
-- The `src/` directory contains the main source code, including configuration, schemas, and utility functions for text processing and inference.
+The `NoteBooks/` folder includes Jupyter notebooks for data exploration and model training.
 
 ## Installation
 
@@ -76,14 +80,17 @@ Sentiment-Analysis-API/
    ```bash
    git clone https://github.com/MohammedHamza0/Sentiment-Analysis-API.git
    ```
+
 2. Navigate to the project directory:
    ```bash
    cd Sentiment-Analysis-API
    ```
+
 3. Create a new Python environment (Python 3.10):
    ```bash
    python -m venv venv
    ```
+
 4. Activate the environment:
    - On Windows:
      ```bash
@@ -93,36 +100,42 @@ Sentiment-Analysis-API/
      ```bash
      source venv/bin/activate
      ```
-5. Install dependencies:
+
+5. Install the package in development mode:
    ```bash
-   pip install -r requirements.txt
+   pip install -e .
+   ```
+
+6. Create a `.env` file in the root directory:
+   ```
+   API_SECRET_KEY=your-secret-key-here
    ```
 
 ## Usage
 
 1. **Run the Project**:
-   - The frontend will automatically start the backend when you run it. Simply execute:
-     ```bash
-     streamlit run frontend.py
-     ```
-   - This will start the Streamlit frontend and the backend server.
+   ```bash
+   python run.py
+   ```
+   This will start both the Streamlit frontend and the FastAPI backend.
 
 2. **Access the Frontend**:
-   - Open your browser and navigate to:
-     ```
-     http://localhost:8501
-     ```
+   Open your browser and navigate to:
+   ```
+   http://localhost:8501
+   ```
 
 3. **Input Text and Analyze Sentiment**:
-   - Enter text for sentiment analysis in the provided text area.
-   - Select the model type (e.g., TF-IDF, BoW, GloVe) and model name (e.g., SVM, RF) from the sidebar.
-   - Click the "Analyze Sentiment" button to view the predictions.
+   - Enter text for sentiment analysis in the provided text area
+   - Select the model type (TF-IDF, BoW, GloVe) and model name (SVM, RF) from the sidebar
+   - Enter your API key in the sidebar
+   - Click the "Analyze Sentiment" button to view the predictions
 
 ## API Endpoints
 
 ### `/predict`
 - **Method**: `POST`
-- **Description**: Predicts the sentiment of the input text.
+- **Description**: Predicts the sentiment of the input text
 - **Request Body**:
   ```json
   {
@@ -132,7 +145,7 @@ Sentiment-Analysis-API/
   }
   ```
 - **Headers**:
-  - `X-API-Key`: Your API key for authentication.
+  - `X-API-Key`: Your API key for authentication
 - **Response**:
   ```json
   {
@@ -145,21 +158,20 @@ Sentiment-Analysis-API/
 
 ## Troubleshooting
 
-1. **Backend Connection Issues**:
-   - Ensure no other process is using port `8000`.
-   - Manually start the backend using:
+1. **Import Issues**:
+   - If you encounter import errors, make sure you've installed the package in development mode:
      ```bash
-     uvicorn backend:app --host 127.0.0.1 --port 8000 --reload
+     pip install -e .
      ```
 
-2. **Dependencies**:
-   - Ensure all dependencies are installed using:
-     ```bash
-     pip install -r requirements.txt
-     ```
+2. **Backend Connection Issues**:
+   - The frontend will automatically start the backend
+   - Default backend runs on `http://127.0.0.1:5000`
+   - Check if the port is already in use
 
 3. **API Key**:
-   - Ensure you provide a valid API key in the frontend sidebar.
+   - Ensure you've created a `.env` file with your API key
+   - Make sure to enter the same API key in the frontend sidebar
 
 ## License
 This project is licensed under the terms specified in the `LICENSE` file.

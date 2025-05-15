@@ -1,5 +1,5 @@
 from fastapi import Depends, APIRouter
-from src.config import Settings, get_settings
+from src.Utils.config import Settings, get_settings
 
 
 

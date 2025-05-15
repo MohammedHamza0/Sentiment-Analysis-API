@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.security import APIKeyHeader
-from src.utils.inferance import TextClassifier
-from src.config import Settings, get_settings
-from src.schemas.input_output_schema import text_request, PredictionResponse
+from src.Utils.inference import TextClassifier
+from src.Utils.config import Settings, get_settings
+from src.Model.input_output_schema import text_request, PredictionResponse
 
 
 

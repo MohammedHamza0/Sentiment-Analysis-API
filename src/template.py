@@ -3,25 +3,7 @@ from pathlib import Path
 
 
 
-list_of_files = [
-     "artifacts",
-     "DataSets",
-     "images",
-     "NoteBooks/notebook.ipynb",
-     "src/__init__.py",
-     "src/schemas/__init__.py",
-     "src/schemas/input_output_schema.py",
-     "src/utils/__init__.py",
-     "src/utils/inferance.py",
-     "src/utils/text_processor.py",
-     "src/config.py",
-     ".env",
-     ".env.example",
-     "requirements.txt",
-     "backend.py",
-     "frontend.py",
-]
-
+list_of_files = 
 
 for filepath in list_of_files:
      filepath = Path(filepath)
